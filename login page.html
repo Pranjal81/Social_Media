@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Login/Registration</title>
 	<style >
 		.body{
 			margin: 0;
@@ -58,7 +58,7 @@
 		<br>
 		<input type="text" name="username" placeholder="Username" style="position: absolute;right: 320px;border:2px solid white;margin-top: 25px"></input>
 		<input type="password" name="pass" placeholder="Password" style="position: absolute;right: 70px;border: 2px solid white;margin-top: 25px;">
-		<button style="background-color: blue; position: absolute;right: 10px;margin-top: 25px;color:white;border: 2px solid white;"><b>Log-in</button></b>
+		<input style="background-color: blue; position: absolute;right: 10px;margin-top: 25px;color:white;border: 2px solid white;" type="submit" value="Login" name="log_user">
 	</div>
 	<div class="left">
 		<span style="color:#0E385F;font-size: 20px;margin:2%;position: relative;">COME, REQUEST, SHARE!</span>
@@ -74,16 +74,16 @@
 
 			<b><h2>SIGN-UP:</h2></b>
 		<form action="sign_up.php" method="POST">
-		<input class="registration_form" type="text" name="fname" placeholder="First Name" style="width: 180px;">
-		<input class="registration_form" type="text" name="lName" placeholder="Last Name" style="width: 180px;">
-		<input class="registration_form" type="text" name="username" placeholder="Username" style="width: 500px;">
-		<input class="registration_form" type="text" name="phone" placeholder="Mobile No" style="width: 500px;">
+		<input class="registration_form" type="text" name="fname" placeholder="First Name" style="width: 180px;" required autofocus>
+		<input class="registration_form" type="text" name="lname" placeholder="Last Name" style="width: 180px;">
+		<input class="registration_form" type="text" name="username" placeholder="Username" style="width: 500px;" required>
+		<input class="registration_form" type="text" name="phone" placeholder="Mobile No" style="width: 500px;" required>
 		<input class="registration_form" type="radio" name="gender" style="width: 180px;" value="M">MALE
 		<input class="registration_form" type="radio" name="gender" style="width: 180px;" value="F">FEMALE
-		<input class="registration_form" type="email" name="mail" placeholder="Email" style="width: 500px;">
-		<input class="registration_form" type="password" name="pass" placeholder="Password" style="width: 500px;">
-		<input class="registration_form" type="cpassword" name="cpass" placeholder="Confirm Password" style="width: 500px;">
-		<input type="submit" value="Submit" name="submit">
+		<input class="registration_form" type="email" name="mail" placeholder="Email" style="width: 500px;" required>
+		<input class="registration_form" type="password" name="pass" placeholder="Password" style="width: 500px;" required>
+		<input class="registration_form" type="password" name="cpass" placeholder="Confirm Password" style="width: 500px;" required>
+		<input type="submit" value="Submit" name="reg_user">
 		</form>
 	</div>
 </body>
