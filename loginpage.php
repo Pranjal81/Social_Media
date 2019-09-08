@@ -1,3 +1,13 @@
+<?php
+session_start();
+$conn=mysqli_connect('localhost','root','','social_media');
+if(!$conn){
+	die("Connection failed:".mysqli_connect_error());
+}
+$fnameErr=$lnameErr=$usernameErr=$phoneErr=$genderErr=$mailErr=$passErr=$cpassErr="";
+echo $_SESSION['error'];
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +20,7 @@
 			}
 		.header
 		{
-			background-color:darkblue ;
+			background-color:darkblue;
 			width:100%; 
 			height: 80px;
 			border:1px solid darkblue;
@@ -44,6 +54,11 @@
 			padding-right:10px;
 			margin:6px;
 		}
+		#error
+		{
+			color: red;
+			font-size: 100%;
+		}
 	</style>
 </head>
 <body>
@@ -74,15 +89,15 @@
 
 			<b><h2>SIGN-UP:</h2></b>
 		<form action="sign_up.php" method="POST">
-		<input class="registration_form" type="text" name="fname" placeholder="First Name" style="width: 180px;" required autofocus>
-		<input class="registration_form" type="text" name="lname" placeholder="Last Name" style="width: 180px;">
-		<input class="registration_form" type="text" name="username" placeholder="Username" style="width: 500px;" required>
-		<input class="registration_form" type="text" name="phone" placeholder="Mobile No" style="width: 500px;" required>
-		<input class="registration_form" type="radio" name="gender" style="width: 180px;" value="M">MALE
-		<input class="registration_form" type="radio" name="gender" style="width: 180px;" value="F">FEMALE
-		<input class="registration_form" type="email" name="mail" placeholder="Email" style="width: 500px;" required>
-		<input class="registration_form" type="password" name="pass" placeholder="Password" style="width: 500px;" required>
-		<input class="registration_form" type="password" name="cpass" placeholder="Confirm Password" style="width: 500px;" required>
+		<input class="registration_form" type="text" name="fname" placeholder="First Name" style="width: 180px;" autofocus><span id="error">*<?php echo $fnameErr; ?></span>
+		<input class="registration_form" type="text" name="lname" placeholder="Last Name" style="width: 180px;"><span id="error"><?php echo $lnameErr; ?></span>
+		<input class="registration_form" type="text" name="username" placeholder="Username" style="width: 500px;"><span id="error">*<?php echo $usernameErr; ?></span>
+		<input class="registration_form" type="text" name="phone" placeholder="Mobile No" style="width: 500px;"><span id="error">*<?php echo $phoneErr; ?></span>
+		<input class="registration_form" type="radio" name="gender" value="true" style="width: 180px;" value="M"><span>MALE</span>
+		<input class="registration_form" type="radio" name="gender" style="width: 180px;" value="F"><span>FEMALE</span><span id="error">*<?php echo $genderErr; ?></span>
+		<input class="registration_form" type="text" name="mail" placeholder="Email" style="width: 500px;"><span id="error">*<?php echo $mailErr; ?></span>
+		<input class="registration_form" type="password" name="pass" placeholder="Password" style="width: 500px;" ><span id="error">*<?php echo $passErr; ?></span>
+		<input class="registration_form" type="password" name="cpass" placeholder="Confirm Password" style="width: 500px;"><span id="error">*<?php echo $cpassErr; ?></span>
 		<input type="submit" value="Submit" name="reg_user">
 		</form>
 	</div>

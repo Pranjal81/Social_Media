@@ -1,11 +1,48 @@
 <?php
-	$conn=mysqli_connect('localhost','root','','social_media');
+    session_start();
+    $conn=mysqli_connect('localhost','root','','social_media');
 if(!$conn){
-	die("Connection failed:".mysqli_connect_error());
+    die("Connection failed:".mysqli_connect_error());
 }
 $fnameErr=$lnameErr=$usernameErr=$phoneErr=$genderErr=$mailErr=$passErr=$cpassErr="";
 if(isset($_POST['reg_user']))
 {
+    $var1=0;
+    if(empty($_POST['fname'])) {
+        $fnameErr="Firstname can not be empty!";
+        $var1=1;
+    }
+    if(empty($_POST['username'])) {
+        $usernameErr="Username can not be empty!";
+        $var1=1;
+    }
+    if(empty($_POST['phone'])) {
+        $phoneErr="Phone no. can not be empty!";
+        $var1=1;
+    }
+    if(empty($_POST['gender'])) {
+        $genderErr="Please select a gender";
+        $var1=1;
+    }
+    if(empty($_POST['mail'])) {
+        $mailErr="E-mail can not be empty!";
+        $var1=1;
+    }
+    if(empty($_POST['pass'])) {
+        $passErr="Password can not be empty!";
+        $var1=1;
+    }
+    if(empty($_POST['cpass'])) {
+        $cpassErr="Please re-enter your password";
+        $var1=1;
+    }
+    if($var1==1) {
+        $_SESSION['error']= "Please fill all fields!";
+        header("location:loginpage.php");
+    }
+
+    else{
+
     $fname=mysqli_real_escape_string($conn, $_POST['fname']);
     $lname=mysqli_real_escape_string($conn, $_POST['lname']);
     $username=mysqli_real_escape_string($conn, $_POST['username']);
@@ -23,41 +60,53 @@ if(isset($_POST['reg_user']))
     if(!preg_match("/^[0-9 ]*$/",$phone)){
         $phoneErr="Only numerals allowed!"; $var=1;}
     if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,50}$/', $pass)) {
-    	$passErr="Password must contain 1 digit, 1 letter with minimum 8 characters!"; $var=1;}
+        $passErr="Password must contain 1 digit, 1 letter with minimum 8 characters!"; $var=1;}
     if(!preg_match('/^[0-9A-Za-z!@#$%]*$/', $username)) {
-    	$usernameErr="Username should only contain digits, letters and special characters(!@#$%)!"; $var=1;}
+        $usernameErr="Username should only contain digits, letters and special characters(!@#$%)!"; $var=1;}
     if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i",  $mail)) {
-    	$mailErr="E-mail is not valid!"; $var=1;}
+        $mailErr="E-mail is not valid!"; $var=1;}
 
     if($var==1){
-        header("location:login_page.html");
+        $_SESSION['error']= "Validation incomplete";
+        header("location:loginpage.php");
     }
 
-    $squ="SELECT username FROM Users WHERE Username='".$username."'";
-    $result1=mysqli_query($conn, $squ);
-    if(mysqli_num_rows($result1)!=0) {
-    	echo "Username already exists!";
-    	header("location:login_page.html");
+    else{
+
+    $squ="SELECT * FROM `record` WHERE Username='$username'";
+    $res=mysqli_query($conn, $squ);
+    if(mysqli_num_rows($res)) {
+        $_SESSION['error']= "Username already exists!";
+        header("location:loginpage.php");
     }
+
+    else{
 
     if($pass!=$cpass)
     {
-    	$cpassErr="Password didn't match";
-    	header("location:login_page.html");
+        $cpassErr="Password did not match!";
+        $_SESSION['error']= "Password did not match!";
+        header("location:loginpage.php");
     }
+
+    else{
 
     $pass=md5($pass);
 
     $sqr="INSERT INTO `record` (`First_Name`,`Last_Name`,`Username`,`Mobile_No.`,`Gender`,`E-mail`,`Password`) VALUES('$fname', '$lname', '$username', '$phone', '$gender', '$mail', '$pass')";
     $result= mysqli_query($conn, $sqr) or die(mysqli_error($conn));
     if($result) {
-    	echo "Successfully Registered :)";
-    	header("location:login_page.html");
+        $_SESSION['error']= "Successfully Registered :)";
+        header("location:loginpage.php");
     }
     else {
-    	echo "Not registered yet!";
-    	header("location:login_page.html");
+        $_SESSION['error']= "Not registered yet!";
+        header("location:loginpage.php");
     }
+}
+}
+}
+}
 
 }
 ?>
