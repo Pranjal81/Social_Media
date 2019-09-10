@@ -12,6 +12,7 @@ echo $_SESSION['error'];
 <html>
 <head>
 	<title>Login/Registration</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style >
 		.body{
 			margin: 0;
@@ -30,7 +31,7 @@ echo $_SESSION['error'];
 		{
 			width: 55%;
 			position: absolute;
-			left:0;
+			margin-left: 5vw;
 		}
 		.right
 		{
@@ -61,44 +62,41 @@ echo $_SESSION['error'];
 		}
 	</style>
 </head>
-<body>
+<body style="background-image: url(smbg.png); height: 120%; margin-left: 0vw; background-position:right; background-repeat: no-repeat;">
 	<div class="header">
-		<span style="float: left;color:white;margin-top: 25px;font-size: 30px;margin-left: 30px">
+		<span style="float: left;color:white;margin-top: 25px;font-size: 3vw;margin-left: 30px">
 		<b>
 			APNIBOOK
 		</b>
 		</span>
-		<span style="position: absolute;right:250px;color:white; margin-top: 15px;margin-right: 150px">Username</span>
-		<span style="position:absolute;right:150px;color:white; margin-top: 15px;margin-left: 150px">Password</span>
+		<span style="position: absolute;right:19vw;color:white; margin-top: 15px;margin-right: 150px">Username</span>
+		<span style="position:absolute;right:13vw;color:white; margin-top: 15px;margin-left: 150px">Password</span>
 		<br>
-		<input type="text" name="username" placeholder="Username" style="position: absolute;right: 320px;border:2px solid white;margin-top: 25px"></input>
-		<input type="password" name="pass" placeholder="Password" style="position: absolute;right: 70px;border: 2px solid white;margin-top: 25px;">
+		<form action="sign_up.php" method="POST">
+		<input type="text" name="username" placeholder="Username" style="position: absolute;right: 23vw;border:2px solid white;margin-top: 25px"></input>
+		<input type="password" name="pass" placeholder="Password" style="position: absolute;right: 6vw;border: 2px solid white;margin-top: 25px;">
 		<input style="background-color: blue; position: absolute;right: 10px;margin-top: 25px;color:white;border: 2px solid white;" type="submit" value="Login" name="log_user">
+	    </form>
 	</div>
-	<div class="left">
-		<span style="color:#0E385F;font-size: 20px;margin:2%;position: relative;">COME, REQUEST, SHARE!</span>
+	<div class="right">
+		<br><br><span style="color:#0E385F;font-size: 20px;margin:2%;position: relative;">JOIN, CONNECT and SHARE :)</span><br>
 		<span style="color:#0E385F;">It helps to connect with friends and share memories with them.</span>
 	</div>
-	<div  class="right">
+	<div class="left">
 		
-			<span style="font-size: 30px;color: #333;font-family: Halvetica,Aerial, sans-serif;">Create an account.<br><br></span>
-			<span style="font-size: 22px;color: #333;font-family: Halvetica,Aerial, sans-serif;">
-				Enjoy with Friends.<br>
-				Stay Connected!<br>
-			</span>
+			<br><br><span style="font-size: 3vw;color: #333;font-family: Halvetica,Aerial, sans-serif;">Create an account:<br></span>
 
-			<b><h2>SIGN-UP:</h2></b>
 		<form action="sign_up.php" method="POST">
-		<input class="registration_form" type="text" name="fname" placeholder="First Name" style="width: 180px;" autofocus><span id="error">*<?php echo $fnameErr; ?></span>
-		<input class="registration_form" type="text" name="lname" placeholder="Last Name" style="width: 180px;"><span id="error"><?php echo $lnameErr; ?></span>
-		<input class="registration_form" type="text" name="username" placeholder="Username" style="width: 500px;"><span id="error">*<?php echo $usernameErr; ?></span>
-		<input class="registration_form" type="text" name="phone" placeholder="Mobile No" style="width: 500px;"><span id="error">*<?php echo $phoneErr; ?></span>
-		<input class="registration_form" type="radio" name="gender" value="true" style="width: 180px;" value="M"><span>MALE</span>
-		<input class="registration_form" type="radio" name="gender" style="width: 180px;" value="F"><span>FEMALE</span><span id="error">*<?php echo $genderErr; ?></span>
-		<input class="registration_form" type="text" name="mail" placeholder="Email" style="width: 500px;"><span id="error">*<?php echo $mailErr; ?></span>
-		<input class="registration_form" type="password" name="pass" placeholder="Password" style="width: 500px;" ><span id="error">*<?php echo $passErr; ?></span>
-		<input class="registration_form" type="password" name="cpass" placeholder="Confirm Password" style="width: 500px;"><span id="error">*<?php echo $cpassErr; ?></span>
-		<input type="submit" value="Submit" name="reg_user">
+		<input class="registration_form" type="text" name="fname" placeholder="First Name" style="width: 180px;" autofocus><span id="error">*<?php echo $fnameErr; ?></span><br>
+		<input class="registration_form" type="text" name="lname" placeholder="Last Name" style="width: 180px;"><span id="error"><?php echo $lnameErr; ?></span><br>
+		<input class="registration_form" type="text" name="username" placeholder="Username" style="width: 500px;"><span id="error">*<?php echo $usernameErr; ?></span><br>
+		<input class="registration_form" type="text" name="phone" placeholder="Mobile No" style="width: 500px;"><span id="error">*<?php echo $phoneErr; ?></span><br>
+		<input class="registration_form" type="radio" name="gender" style="width: 50px;" value="Male"><span>MALE</span>
+		<input class="registration_form" type="radio" name="gender" style="width: 50px;" value="Female"><span>FEMALE</span><span id="error">*<?php echo $genderErr; ?></span><br>
+		<input class="registration_form" type="text" name="mail" placeholder="Email" style="width: 500px;"><span id="error">*<?php echo $mailErr; ?></span><br>
+		<input class="registration_form" type="password" name="pass" placeholder="Password" style="width: 500px;" ><span id="error">*<?php echo $passErr; ?></span><br>
+		<input class="registration_form" type="password" name="cpass" placeholder="Confirm Password" style="width: 500px;"><span id="error">*<?php echo $cpassErr; ?></span><br>
+		<input type="submit" value="Create account" name="reg_user" style="background-color: blue; color:white;border: 1px solid rgb(189, 199, 216); border-radius:4px; padding: 1vw; margin-left: 1vw;">
 		</form>
 	</div>
 </body>

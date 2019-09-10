@@ -1,8 +1,8 @@
 <?php
     session_start();
-    $conn=mysqli_connect('localhost','root','','social_media');
+	$conn=mysqli_connect('localhost','root','','social_media');
 if(!$conn){
-    die("Connection failed:".mysqli_connect_error());
+	die("Connection failed:".mysqli_connect_error());
 }
 $fnameErr=$lnameErr=$usernameErr=$phoneErr=$genderErr=$mailErr=$passErr=$cpassErr="";
 if(isset($_POST['reg_user']))
@@ -60,11 +60,11 @@ if(isset($_POST['reg_user']))
     if(!preg_match("/^[0-9 ]*$/",$phone)){
         $phoneErr="Only numerals allowed!"; $var=1;}
     if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,50}$/', $pass)) {
-        $passErr="Password must contain 1 digit, 1 letter with minimum 8 characters!"; $var=1;}
+    	$passErr="Password must contain 1 digit, 1 letter with minimum 8 characters!"; $var=1;}
     if(!preg_match('/^[0-9A-Za-z!@#$%]*$/', $username)) {
-        $usernameErr="Username should only contain digits, letters and special characters(!@#$%)!"; $var=1;}
+    	$usernameErr="Username should only contain digits, letters and special characters(!@#$%)!"; $var=1;}
     if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i",  $mail)) {
-        $mailErr="E-mail is not valid!"; $var=1;}
+    	$mailErr="E-mail is not valid!"; $var=1;}
 
     if($var==1){
         $_SESSION['error']= "Validation incomplete";
@@ -76,17 +76,17 @@ if(isset($_POST['reg_user']))
     $squ="SELECT * FROM `record` WHERE Username='$username'";
     $res=mysqli_query($conn, $squ);
     if(mysqli_num_rows($res)) {
-        $_SESSION['error']= "Username already exists!";
-        header("location:loginpage.php");
+    	$_SESSION['error']= "Username already exists!";
+    	header("location:loginpage.php");
     }
 
     else{
 
     if($pass!=$cpass)
     {
-        $cpassErr="Password did not match!";
+    	$cpassErr="Password did not match!";
         $_SESSION['error']= "Password did not match!";
-        header("location:loginpage.php");
+    	header("location:loginpage.php");
     }
 
     else{
@@ -96,17 +96,65 @@ if(isset($_POST['reg_user']))
     $sqr="INSERT INTO `record` (`First_Name`,`Last_Name`,`Username`,`Mobile_No.`,`Gender`,`E-mail`,`Password`) VALUES('$fname', '$lname', '$username', '$phone', '$gender', '$mail', '$pass')";
     $result= mysqli_query($conn, $sqr) or die(mysqli_error($conn));
     if($result) {
-        $_SESSION['error']= "Successfully Registered :)";
-        header("location:loginpage.php");
+    	$_SESSION['error']= "Successfully Registered :)";
+    	header("location:loginpage.php");
     }
     else {
-        $_SESSION['error']= "Not registered yet!";
-        header("location:loginpage.php");
+    	$_SESSION['error']= "Not registered yet!";
+    	header("location:loginpage.php");
     }
 }
 }
 }
 }
 
+}
+
+if(isset($_POST['log_user']))
+{
+    $var1=0;
+    if(empty($_POST['pass'])) {
+        $passErr="Password can not be empty!";
+        $var1=1;
+    }
+    if(empty($_POST['username'])) {
+        $usernameErr="Username can not be empty!";
+        $var1=1;
+    }
+    if($var1==1) {
+        $_SESSION['error']= "Please enter both the fields!";
+        header("location:loginpage.php");
+    }
+    else {
+        $username=mysqli_real_escape_string($conn, $_POST['username']);
+        $pass=mysqli_real_escape_string($conn, $_POST['pass']);
+
+        if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,50}$/', $pass)) {
+            $passErr="Password must contain 1 digit, 1 letter with minimum 8 characters!"; $var=1;}
+        if(!preg_match('/^[0-9A-Za-z!@#$%]*$/', $username)) {
+            $usernameErr="Username should only contain digits, letters and special characters(!@#$%)!"; $var=1;}
+
+        $pass=md5($pass);
+
+        $sqch= "SELECT * FROM `record` WHERE Username='$username' AND Password='$pass'";
+        $res1=mysqli_query($conn, $sqch);
+        if(mysqli_num_rows($res1)>0)
+        {
+            $_SESSION['username']=$username;
+            $_SESSION['success']="You have logged in Successfully :)";
+            $sqq= "SELECT * FROM `record` WHERE Username='$username'";
+            $res2 = mysqli_query($conn, $sqq);
+            $row = mysqli_fetch_assoc($res2);
+            $_SESSION['firstname']=$row['First_Name'];
+            $_SESSION['lastname']=$row['Last_Name'];
+            $_SESSION['phone']=$row['Mobile_No.'];
+            $_SESSION['mail']=$row['E-mail'];
+            $_SESSION['gender']=$row['gender'];
+        }
+
+        else {
+            header("location:loginpage.php");
+        }
+    }
 }
 ?>
