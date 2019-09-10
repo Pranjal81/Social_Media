@@ -70,12 +70,12 @@ echo $_SESSION['error'];
 		</b>
 		</span>
 		<span style="position: absolute;right:19vw;color:white; margin-top: 15px;margin-right: 150px">Username</span>
-		<span style="position:absolute;right:13vw;color:white; margin-top: 15px;margin-left: 150px">Password</span>
+		<span style="position:absolute;right:17vw;color:white; margin-top: 15px;margin-left: 150px">Password</span>
 		<br>
 		<form action="sign_up.php" method="POST">
-		<input type="text" name="username" placeholder="Username" style="position: absolute;right: 23vw;border:2px solid white;margin-top: 25px"></input>
-		<input type="password" name="pass" placeholder="Password" style="position: absolute;right: 6vw;border: 2px solid white;margin-top: 25px;">
-		<input style="background-color: blue; position: absolute;right: 10px;margin-top: 25px;color:white;border: 2px solid white;" type="submit" value="Login" name="log_user">
+		<input type="text" name="username1" placeholder="Username" style="right: 23vw;border:2px solid white;margin-top: 25px; margin-left:44vw;"></input>
+		<input type="password" name="pass1" placeholder="Password" style=";right: 6vw;border: 2px solid white;margin-top: 25px;">
+		<input style="background-color: blue;right: 10px;margin-top: 25px;color:white;border: 2px solid white;" type="submit" value="Login" name="log_user">
 	    </form>
 	</div>
 	<div class="right">

@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $_SESSION['error']="";
 	$conn=mysqli_connect('localhost','root','','social_media');
 if(!$conn){
 	die("Connection failed:".mysqli_connect_error());
@@ -7,6 +8,7 @@ if(!$conn){
 $fnameErr=$lnameErr=$usernameErr=$phoneErr=$genderErr=$mailErr=$passErr=$cpassErr="";
 if(isset($_POST['reg_user']))
 {
+    $_SESSION['error']="";
     $var1=0;
     if(empty($_POST['fname'])) {
         $fnameErr="Firstname can not be empty!";
@@ -91,7 +93,7 @@ if(isset($_POST['reg_user']))
 
     else{
 
-    $pass=md5($pass);
+    //$pass=md5($pass);
 
     $sqr="INSERT INTO `record` (`First_Name`,`Last_Name`,`Username`,`Mobile_No.`,`Gender`,`E-mail`,`Password`) VALUES('$fname', '$lname', '$username', '$phone', '$gender', '$mail', '$pass')";
     $result= mysqli_query($conn, $sqr) or die(mysqli_error($conn));
@@ -112,12 +114,13 @@ if(isset($_POST['reg_user']))
 
 if(isset($_POST['log_user']))
 {
+    $_SESSION['error']="";
     $var1=0;
-    if(empty($_POST['pass'])) {
+    if(empty($_POST['pass1'])) {
         $passErr="Password can not be empty!";
         $var1=1;
     }
-    if(empty($_POST['username'])) {
+    if(empty($_POST['username1'])) {
         $usernameErr="Username can not be empty!";
         $var1=1;
     }
@@ -126,35 +129,50 @@ if(isset($_POST['log_user']))
         header("location:loginpage.php");
     }
     else {
-        $username=mysqli_real_escape_string($conn, $_POST['username']);
-        $pass=mysqli_real_escape_string($conn, $_POST['pass']);
+        $username1=mysqli_real_escape_string($conn, $_POST['username1']);
+        $pass1=mysqli_real_escape_string($conn, $_POST['pass1']);
 
-        if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,50}$/', $pass)) {
-            $passErr="Password must contain 1 digit, 1 letter with minimum 8 characters!"; $var=1;}
-        if(!preg_match('/^[0-9A-Za-z!@#$%]*$/', $username)) {
-            $usernameErr="Username should only contain digits, letters and special characters(!@#$%)!"; $var=1;}
+        $var2=0;
+        if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,50}$/', $pass1)) {
+            $passErr="Password must contain 1 digit, 1 letter with minimum 8 characters!"; $var2=1;}
+        if(!preg_match('/^[0-9A-Za-z!@#$%]*$/', $username1)) {
+            $usernameErr="Username should only contain digits, letters and special characters(!@#$%)"; $var2=1;}
+        if($var2==1)
+        {
+            $_SESSION['error']="Please enter valid username and password!";
+        }
+        else {
 
-        $pass=md5($pass);
+        //$pass1=md5($pass1);
 
-        $sqch= "SELECT * FROM `record` WHERE Username='$username' AND Password='$pass'";
+        $sqch= "SELECT * FROM record WHERE Username='$username1'";
         $res1=mysqli_query($conn, $sqch);
         if(mysqli_num_rows($res1)>0)
         {
-            $_SESSION['username']=$username;
-            $_SESSION['success']="You have logged in Successfully :)";
-            $sqq= "SELECT * FROM `record` WHERE Username='$username'";
+            $sqq= "SELECT * FROM `record` WHERE Username='$username1'";
             $res2 = mysqli_query($conn, $sqq);
             $row = mysqli_fetch_assoc($res2);
+            if($row['Password']==$pass1) {
+            $_SESSION['username']=$username1;
+            $_SESSION['error']="You have logged in Successfully :)";
             $_SESSION['firstname']=$row['First_Name'];
             $_SESSION['lastname']=$row['Last_Name'];
             $_SESSION['phone']=$row['Mobile_No.'];
             $_SESSION['mail']=$row['E-mail'];
             $_SESSION['gender']=$row['gender'];
+            header("location:BlockBreaker.php");
+            }
+            else {
+                $_SESSION['error']="Password is incorrect!";
+                header("location:loginpage.php");
+            }
         }
 
         else {
+            $_SESSION['error']="Username does not exist!";
             header("location:loginpage.php");
         }
+    }
     }
 }
 ?>
