@@ -6,6 +6,7 @@ if(!$conn){
 }
 $fnameErr=$lnameErr=$usernameErr=$phoneErr=$genderErr=$mailErr=$passErr=$cpassErr="";
 echo $_SESSION['error'];
+$_SESSION['error']="";
 ?>
 
 <!DOCTYPE html>
@@ -58,24 +59,24 @@ echo $_SESSION['error'];
 		#error
 		{
 			color: red;
-			font-size: 100%;
+			font-size: 70%;
 		}
 	</style>
 </head>
-<body style="background-image: url(smbg.png); height: 120%; margin-left: 0vw; background-position:right; background-repeat: no-repeat;">
+<body style="background-image: url(smbg.png);height: 120%; margin-left: 0vw; background-position:right; background-repeat: no-repeat;">
 	<div class="header">
-		<span style="float: left;color:white;margin-top: 25px;font-size: 3vw;margin-left: 30px">
+		<span style="float: left;color:white;margin-top: 25px;font-size: 3vw;margin-left: 30px;">
 		<b>
 			APNIBOOK
 		</b>
 		</span>
-		<span style="position: absolute;right:19vw;color:white; margin-top: 15px;margin-right: 150px">Username</span>
-		<span style="position:absolute;right:17vw;color:white; margin-top: 15px;margin-left: 150px">Password</span>
+		<span style="margin-left:44vw;color:white;">Username</span>
+		<span style="margin-left:6vw;color:white;">Password</span>
 		<br>
 		<form action="sign_up.php" method="POST">
-		<input type="text" name="username1" placeholder="Username" style="right: 23vw;border:2px solid white;margin-top: 25px; margin-left:44vw;"></input>
-		<input type="password" name="pass1" placeholder="Password" style=";right: 6vw;border: 2px solid white;margin-top: 25px;">
-		<input style="background-color: blue;right: 10px;margin-top: 25px;color:white;border: 2px solid white;" type="submit" value="Login" name="log_user">
+		<input type="text" name="username1" placeholder="Username" style="right: 23vw; width: 11vw; border:2px solid white; margin-left:44vw;"><span id="error"><?php echo $_SESSION['username1Err']; $_SESSION['username1Err']=""; ?></span>
+		<input type="password" name="pass1" placeholder="Password" style=";right: 6vw; width: 11vw; border: 2px solid white;"><span id="error"><?php echo $_SESSION['pass1Err']; $_SESSION['pass1Err']=""; ?></span>
+		<input style="background-color: blue;color:white;border: 2px solid white;" type="submit" value="Login" name="log_user">
 	    </form>
 	</div>
 	<div class="right">
@@ -87,15 +88,15 @@ echo $_SESSION['error'];
 			<br><br><span style="font-size: 3vw;color: #333;font-family: Halvetica,Aerial, sans-serif;">Create an account:<br></span>
 
 		<form action="sign_up.php" method="POST">
-		<input class="registration_form" type="text" name="fname" placeholder="First Name" style="width: 180px;" autofocus><span id="error">*<?php echo $fnameErr; ?></span><br>
-		<input class="registration_form" type="text" name="lname" placeholder="Last Name" style="width: 180px;"><span id="error"><?php echo $lnameErr; ?></span><br>
-		<input class="registration_form" type="text" name="username" placeholder="Username" style="width: 500px;"><span id="error">*<?php echo $usernameErr; ?></span><br>
-		<input class="registration_form" type="text" name="phone" placeholder="Mobile No" style="width: 500px;"><span id="error">*<?php echo $phoneErr; ?></span><br>
+		<input class="registration_form" type="text" name="fname" placeholder="First Name" style="width: 180px;" autofocus><span id="error">*<?php echo $_SESSION['fnameErr']; $_SESSION['fnameErr']=""; ?></span><br>
+		<input class="registration_form" type="text" name="lname" placeholder="Last Name" style="width: 180px;"><span id="error"><?php echo $_SESSION['lnameErr']; $_SESSION['lnameErr']=""; ?></span><br>
+		<input class="registration_form" type="text" name="username" placeholder="Username" style="width: 400px;"><span id="error">*<?php echo $_SESSION['usernameErr']; $_SESSION['usernameErr']=""; ?></span><br>
+		<input class="registration_form" type="text" name="phone" placeholder="Mobile No" style="width: 400px;"><span id="error">*<?php echo $_SESSION['phoneErr']; $_SESSION['phoneErr']=""; ?></span><br>
 		<input class="registration_form" type="radio" name="gender" style="width: 50px;" value="Male"><span>MALE</span>
-		<input class="registration_form" type="radio" name="gender" style="width: 50px;" value="Female"><span>FEMALE</span><span id="error">*<?php echo $genderErr; ?></span><br>
-		<input class="registration_form" type="text" name="mail" placeholder="Email" style="width: 500px;"><span id="error">*<?php echo $mailErr; ?></span><br>
-		<input class="registration_form" type="password" name="pass" placeholder="Password" style="width: 500px;" ><span id="error">*<?php echo $passErr; ?></span><br>
-		<input class="registration_form" type="password" name="cpass" placeholder="Confirm Password" style="width: 500px;"><span id="error">*<?php echo $cpassErr; ?></span><br>
+		<input class="registration_form" type="radio" name="gender" style="width: 50px;" value="Female"><span>FEMALE</span><span id="error">*<?php echo $_SESSION['genderErr']; $_SESSION['genderErr']=""; ?></span><br>
+		<input class="registration_form" type="text" name="mail" placeholder="Email" style="width: 400px;"><span id="error">*<?php echo $_SESSION['mailErr']; $_SESSION['mailErr']=""; ?></span><br>
+		<input class="registration_form" type="password" name="pass" placeholder="Password" style="width: 400px;" ><span id="error">*<?php echo $_SESSION['passErr']; $_SESSION['passErr']=""; ?></span><br>
+		<input class="registration_form" type="password" name="cpass" placeholder="Confirm Password" style="width: 400px;"><span id="error">*<?php echo $_SESSION['cpassErr']; $_SESSION['cpassErr']=""; ?></span><br>
 		<input type="submit" value="Create account" name="reg_user" style="background-color: blue; color:white;border: 1px solid rgb(189, 199, 216); border-radius:4px; padding: 1vw; margin-left: 1vw;">
 		</form>
 	</div>
