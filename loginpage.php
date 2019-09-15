@@ -4,7 +4,19 @@ $conn=mysqli_connect('localhost','root','','social_media');
 if(!$conn){
 	die("Connection failed:".mysqli_connect_error());
 }
-$fnameErr=$lnameErr=$usernameErr=$phoneErr=$genderErr=$mailErr=$passErr=$cpassErr="";
+if(!isset($_SESSION['usernameErr']) || !isset($_SESSION['username1Err'])) {
+$_SESSION['username1Err']="";
+$_SESSION['pass1Err']="";
+$_SESSION['fnameErr']="";
+$_SESSION['lnameErr']="";
+$_SESSION['usernameErr']="";
+$_SESSION['phoneErr']="";
+$_SESSION['genderErr']="";
+$_SESSION['mailErr']="";
+$_SESSION['passErr']="";
+$_SESSION['cpassErr']="";
+$_SESSION['error']="";
+}
 echo $_SESSION['error'];
 $_SESSION['error']="";
 ?>
@@ -81,7 +93,6 @@ $_SESSION['error']="";
 	</div>
 	<div class="right">
 		<br><br><span style="color:#0E385F;font-size: 20px;margin:2%;position: relative;">JOIN, CONNECT and SHARE :)</span><br>
-		<span style="color:#0E385F;">It helps to connect with friends and share memories with them.</span>
 	</div>
 	<div class="left">
 		

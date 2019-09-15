@@ -5,7 +5,6 @@
 if(!$conn){
 	die("Connection failed:".mysqli_connect_error());
 }
-$fnameErr=$lnameErr=$usernameErr=$phoneErr=$genderErr=$mailErr=$passErr=$cpassErr="";
 if(isset($_POST['reg_user']))
 {
     $_SESSION['fnameErr']=$_SESSION['lnameErr']=$_SESSION['usernameErr']=$_SESSION['phoneErr']=$_SESSION['genderErr']=$_SESSION['mailErr']=$_SESSION['passErr']=$_SESSION['cpassErr']="";
@@ -74,7 +73,7 @@ if(isset($_POST['reg_user']))
 
     else{
 
-    $squ="SELECT * FROM `record` WHERE Username='$username'";
+    $squ="SELECT * FROM `user` WHERE username='$username'";
     $res=mysqli_query($conn, $squ);
     if(mysqli_num_rows($res)) {
     	$_SESSION['error']= "Username already exists!";
@@ -92,7 +91,7 @@ if(isset($_POST['reg_user']))
     else{
 
     $pass1=sha1($pass);
-    $sqr="INSERT INTO `record` (`First_Name`,`Last_Name`,`Username`,`Mobile_No.`,`Gender`,`E-mail`,`Password`) VALUES('$fname', '$lname', '$username', '$phone', '$gender', '$mail', '$pass1')";
+    $sqr="INSERT INTO `user` (`firstname`,`lastname`,`username`,`phone`,`gender`,`email`,`password`) VALUES('$fname', '$lname', '$username', '$phone', '$gender', '$mail', '$pass1')";
     $result= mysqli_query($conn, $sqr) or die(mysqli_error($conn));
     if($result) {
     	$_SESSION['error']= "Successfully Registered :)";
@@ -129,34 +128,32 @@ if(isset($_POST['log_user']))
         $pass=mysqli_real_escape_string($conn, $_POST['pass1']);
         $var2=0;
         if(!preg_match('/^[0-9A-Za-z!@#$%]*$/', $username1)) {
-            $_SESSION['username1Err']="Username should only contain digits, letters and special characters(!@#$%)"; $var2=1;}
+             $var2=1;
+        }
         if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,50}$/', $pass)) {
-        $_SESSION['pass1Err']="Password must contain 1 digit, 1 letter with minimum 8 characters!"; $var2=1;}
+         $var2=1;
+        }
 
         if($var2==1)
         {
+            $_SESSION['error']="Please enter correct Username and Password!";
             header("location:loginpage.php");
         }
         else {
 
         $pass1=sha1($pass);
 
-        $sqch= "SELECT * FROM record WHERE Username='$username1'";
+        $sqch= "SELECT * FROM `user` WHERE username='$username1'";
         $res1=mysqli_query($conn, $sqch);
         if(mysqli_num_rows($res1)>0)
         {
-            $sqq= "SELECT * FROM `record` WHERE Username='$username1'";
+            $sqq= "SELECT * FROM `user` WHERE username='$username1'";
             $res2 = mysqli_query($conn, $sqq);
             $row = mysqli_fetch_assoc($res2);
-            if($row['Password']==$pass1) {
-            $_SESSION['username']=$username1;
-            $_SESSION['error']="You have logged in Successfully :)";
-            $_SESSION['firstname']=$row['First_Name'];
-            $_SESSION['lastname']=$row['Last_Name'];
-            $_SESSION['phone']=$row['Mobile_No.'];
-            $_SESSION['mail']=$row['E-mail'];
-            $_SESSION['gender']=$row['gender'];
-            header("location:BlockBreaker.php");
+            if($row['password']==$pass1) {
+            $_SESSION['id']=$row['user_id'];
+            $_SESSION['success']="You have logged in Successfully :)";
+            header("location:home.php");
             }
             else {
                 $_SESSION['error']="Password is incorrect!";
