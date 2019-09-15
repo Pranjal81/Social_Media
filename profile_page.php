@@ -2,6 +2,14 @@
 
 include 'connection.php';
 include 'session.php';
+if(isset($_SESSION['scs'])) {
+  echo $_SESSION['scs'];
+  unset($_SESSION['scs']);
+}
+if(isset($_SESSION['err'])) {
+  echo $_SESSION['err'];
+  unset($_SESSION['err']);
+}
 
 ?>
 <!DOCTYPE html>
@@ -55,9 +63,9 @@ li a:hover:not(.active) {
 <body>
 
 <ul class="horizontal">
-  <li class="list1"><img src="img_avatar.png" alt="Avatar" style="width: 60px; height: 50px;margin: 0;padding: 0;border-radius: 50%;padding-right: 5px;"></li>
-  <li class="list1"><a class="active" href="#home">Home</a></li>
-  <li class="list1"><a href="profile_page.php">Profile</a></li>
+  <li class="list1"><img src="<?php echo $img_location; ?>" alt="Avatar" style="width: 60px; height: 50px;margin: 0;padding: 0;border-radius: 50%;padding-right: 5px;"></li>
+  <li class="list1"><a  href="home.php">Home</a></li>
+  <li class="list1"><a class="active" href="profile_page.php">Profile</a></li>
   <li class="list1"><a href="#contact">Friend List</a></li>
     <li class="list1"><a href="#contact">My Photos</a></li>
   <li class="list1" style="float:right"><a href="logout.php">Logout</a></li>
