@@ -3,6 +3,10 @@ include 'connection.php';
 include 'session.php';
 echo $_SESSION['success'];
 $_SESSION['success']="";
+if(isset($_SESSION['scs'])) {
+  echo $_SESSION['scs'];
+  unset($_SESSION['scs']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,31 +69,19 @@ li a:hover:not(.active) {
   <li class="list1" style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
 <p id="home">
-<form method="post" enctype="multipart/form-data"><center>
+<form method="post" action="post.php">
+<center>
     <b style="font-size: 25px;" >Select image to upload:
     <br>
     <input type="file" name="fileToUpload" id="fileToUpload" style ="border: 3px;margin-top:2%;border-radius:5px;width: 20%;height: 5%;">
-    <input type="submit" value="Upload Image" name="submit" style=" background-color: black; color:white;border: 2px solid grey; width: 20%;height: 5%;border-radius:3px;width: 10%;">
+    <input type="submit" value="Upload Image" name="submit" style="background-color: black; color:white;border: 2px solid grey; width: 20%;height: 5%;border-radius:3px;width: 10%;">
   </b>
 </center>
 </form>
-<?php
-$result=mysqli_query($conn,"SELECT * FROM `post` ORDER BY post_id DESC") or die(mysqli_error());
-while($row=mysqli_fetch_assoc($result)) {
-  $userid=$row['user_id'];
-  $postimage=$row['post_image'];
-  $content=$row['content'];
-  $created=$row['created'];
-?>
-<br>
-<img src="photos/"<?php echo $postimage ?>>
-<p><?php echo $content ?></p>
-<b><?php echo $time= time_stamp($time) ?></b><br>
 
-<?php
-}
-?>
-
+<center>
+  <img src="<?php echo $post_image; ?>"alt="Post image"><br>
+</center>
 
 </body>
 </html>
