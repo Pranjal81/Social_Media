@@ -69,6 +69,15 @@ li a:hover:not(.active) {
   <li class="list1" style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
 
+<div style="float: right;">
+<img src="<?php echo $img_location; ?>"alt="Profile picture"><br>
+<b>Change profile picture</b>
+<form action="profile_photo.php" method="POST">
+ <input type="file" name="edit_profile_photo" placeholder="Edit Profile Photo"><br>
+ <input type="submit" name="change_profile_photo" value="Change Profile Picture">
+</form>
+</div>
+
 <form action="edit_profilephp.php" method="POST">
   <label for="fname">Firstname:</label>
   <input type="text" id="fname" name="fname" value="<?php echo $firstname; ?>" autofocus><span id="error">*<?php echo $_SESSION['fnameErr']; $_SESSION['fnameErr']=""; ?></span><br>

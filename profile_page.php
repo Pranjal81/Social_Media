@@ -74,10 +74,7 @@ li a:hover:not(.active) {
 <form><input type="button" onclick="window.location.href='edit_profile.php'" value="Edit" style="float: right;margin-right: 50px;font-size: 25px;"></form>
 
 <h2 style="float: left; margin-left: 80px;font-size: 30px;">Hi &nbsp;<?php echo $firstname; ?></h2>
-<center>
-<img style="border-radius: 4px;" src="<?php echo $img_location; ?>"><br>
-<b><?php echo $firstname;?> &nbsp; <?php echo $lastname; ?></b>
-</center>
+<img style="border-radius: 4px; float:right;" src="<?php echo $img_location; ?>"><br>
 
 <br><br>
 <h1 align="center">Personl Info</h1>
