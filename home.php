@@ -66,6 +66,7 @@ li a:hover:not(.active) {
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
   <li class="list1"><a href="#contact">Friend List</a></li>
     <li class="list1"><a href="#contact">My Photos</a></li>
+    <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;"><form><input type="text" name="search" value="Search" style="height: 20px;"><input style="background-color: #534;color:white;" type="submit" value="Search" name=""></form>
   <li class="list1" style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
 <p id="home">
@@ -87,7 +88,6 @@ li a:hover:not(.active) {
 $result1=mysqli_query($conn, "SELECT * FROM `post` WHERE user_id= '$id' ORDER BY `post_id` DESC");
 while ($row1= mysqli_fetch_assoc($result1)) {
     $post_image= $row1['post_image'];
-    $likes=$row1['likes'];
 ?>
 <center>
 <img src="<?php echo $post_image; ?>" alt="Post image"><br>
