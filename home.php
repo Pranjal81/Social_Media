@@ -74,14 +74,30 @@ li a:hover:not(.active) {
     <b style="font-size: 25px;" >Select image to upload:
     <br>
     <input type="file" name="fileToUpload" id="fileToUpload" style ="border: 3px;margin-top:2%;border-radius:5px;width: 20%;height: 5%;">
+
+    Add caption:
+    <input type="text" name="caption">
+
     <input type="submit" value="Upload Image" name="submit" style="background-color: black; color:white;border: 2px solid grey; width: 20%;height: 5%;border-radius:3px;width: 10%;">
   </b>
 </center>
 </form>
 
+<?php
+$result1=mysqli_query($conn, "SELECT * FROM `post` WHERE user_id= '$id' ORDER BY `post_id` DESC");
+while ($row1= mysqli_fetch_assoc($result1)) {
+    $post_image= $row1['post_image'];
+    $likes=$row1['likes'];
+?>
 <center>
-  <img src="<?php echo $post_image; ?>"alt="Post image"><br>
+<img src="<?php echo $post_image; ?>" alt="Post image"><br>
 </center>
+}
+
+<?php
+}
+?>
+
 
 </body>
 </html>
