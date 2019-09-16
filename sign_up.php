@@ -91,7 +91,8 @@ if(isset($_POST['reg_user']))
     else{
 
     $pass1=sha1($pass);
-    $sqr="INSERT INTO `user` (`firstname`,`lastname`,`username`,`phone`,`gender`,`email`,`password`) VALUES('$fname', '$lname', '$username', '$phone', '$gender', '$mail', '$pass1')";
+    $default_image="avtar.png";
+    $sqr="INSERT INTO `user` (`firstname`,`lastname`,`username`,`phone`,`gender`,`email`,`password`,`profile_picture`) VALUES('$fname', '$lname', '$username', '$phone', '$gender', '$mail', '$pass1','$default_image')";
     $result= mysqli_query($conn, $sqr) or die(mysqli_error($conn));
     if($result) {
     	$_SESSION['error']= "Successfully Registered :)";

@@ -9,13 +9,17 @@ if(isset($_POST['subsearch']))
 	$s=mysqli_query($conn, "SELECT * FROM `user` WHERE `username`='$search_profile'");
 	if(mysqli_num_rows($s)>0)
 	{
-		$username=$row['username'];
-        $img_location=$row['profile_picture'];
-		header("location:search_list.php");
+		$ss=mysqli_query($conn, "SELECT * FROM `user` WHERE `username`='$search_profile'");
+		$row2=mysqli_fetch_assoc($ss);
+		$_SESSION['uname']=$row2['username'];
+        $_SESSION['pp']=$row2['profile_picture'];
+        $_SESSION['fname']=$row2['firstname'];
+        $_SESSION['lname']=$row2['lastname'];
+		header("location:searchlist.php");
 	}
 	else {
 		$_SESSION['fail']="No user found!";
-		header("location:search_list.php");
+		header("location:searchlist.php");
 	}
 	
 }

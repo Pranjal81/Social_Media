@@ -4,7 +4,19 @@ $conn=mysqli_connect('localhost','root','','social_media');
 if(!$conn){
 	die("Connection failed:".mysqli_connect_error());
 }
-$fnameErr=$lnameErr=$usernameErr=$phoneErr=$genderErr=$mailErr=$passErr=$cpassErr="";
+if(!isset($_SESSION['usernameErr']) || !isset($_SESSION['username1Err'])) {
+$_SESSION['username1Err']="";
+$_SESSION['pass1Err']="";
+$_SESSION['fnameErr']="";
+$_SESSION['lnameErr']="";
+$_SESSION['usernameErr']="";
+$_SESSION['phoneErr']="";
+$_SESSION['genderErr']="";
+$_SESSION['mailErr']="";
+$_SESSION['passErr']="";
+$_SESSION['cpassErr']="";
+$_SESSION['error']="";
+}
 echo $_SESSION['error'];
 $_SESSION['error']="";
 ?>
@@ -25,6 +37,7 @@ $_SESSION['error']="";
 			background-color:#534;
 			width:100%; 
 			height: 80px;
+			border:1px solid #534;
 
 		}
 		.left
@@ -75,16 +88,16 @@ $_SESSION['error']="";
 		<form action="sign_up.php" method="POST">
 		<input type="text" name="username1" placeholder="Username" style="right: 23vw; width: 11vw; border:2px solid white; margin-left:44vw;"><span id="error"><?php echo $_SESSION['username1Err']; $_SESSION['username1Err']=""; ?></span>
 		<input type="password" name="pass1" placeholder="Password" style=";right: 6vw; width: 11vw; border: 2px solid white;"><span id="error"><?php echo $_SESSION['pass1Err']; $_SESSION['pass1Err']=""; ?></span>
-		<input style="background-color: #534;color:white;border: 2px solid white;width: 8%;" type="submit" value="Login" name="log_user">
+		<input style="background-color: #534;color:white;border: 2px solid white;" type="submit" value="Login" name="log_user">
 	    </form>
 	</div>
 	<div class="right">
 		<br><br><span style="color:#0E385F;font-size: 20px;margin:2%;position: relative;">JOIN, CONNECT and SHARE :)</span><br>
-		<span style="color:#0E385F;">It helps to connect with friends and share memories with them.</span>
+		<span style="color: #0E385F;">It helps to connect with friends and share memories with them.</span>
 	</div>
 	<div class="left">
 		
-			<br><br><span style="font-size: 30px;color: #522;font-family: Halvetica,Aerial, sans-serif;">Create an account:<br></span>
+			<br><br><span style="font-size: 3vw;color: #333;font-family: Halvetica,Aerial, sans-serif;">Create an account:<br></span>
 
 		<form action="sign_up.php" method="POST">
 		<input class="registration_form" type="text" name="fname" placeholder="First Name" style="width: 180px;" autofocus><span id="error">*<?php echo $_SESSION['fnameErr']; $_SESSION['fnameErr']=""; ?></span><br>
@@ -96,7 +109,7 @@ $_SESSION['error']="";
 		<input class="registration_form" type="text" name="mail" placeholder="Email" style="width: 400px;"><span id="error">*<?php echo $_SESSION['mailErr']; $_SESSION['mailErr']=""; ?></span><br>
 		<input class="registration_form" type="password" name="pass" placeholder="Password" style="width: 400px;" ><span id="error">*<?php echo $_SESSION['passErr']; $_SESSION['passErr']=""; ?></span><br>
 		<input class="registration_form" type="password" name="cpass" placeholder="Confirm Password" style="width: 400px;"><span id="error">*<?php echo $_SESSION['cpassErr']; $_SESSION['cpassErr']=""; ?></span><br>
-		<input type="submit" value="Create account" name="reg_user" style="background-color: #533; color:white;border: 1px solid rgb(189, 199, 216); border-radius:4px; padding: 1vw; margin-left: 1vw;">
+		<input type="submit" value="Create account" name="reg_user" style="background-color: #534; color:white;border: 1px solid rgb(189, 199, 216); border-radius:4px; padding: 1vw; margin-left: 1vw;">
 		</form>
 	</div>
 </body>

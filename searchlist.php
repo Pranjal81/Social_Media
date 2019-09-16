@@ -56,7 +56,7 @@ li a:hover:not(.active) {
 
 <ul class="horizontal">
   <li class="list1"><img src="<?php echo $img_location; ?>" alt="Avatar" style="width: 60px; height: 50px;margin: 0;padding: 0;border-radius: 50%;padding-right: 5px;"></li>
-  <li class="list1"><a class="active" href="home.php">Home</a></li>
+  <li class="list1"><a href="home.php">Home</a></li>
   <li class="list1"><a href="profile_page.php">Profile</a></li>
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
   <li class="list1"><a href="friendlist.php">Friend List</a></li>

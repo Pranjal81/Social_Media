@@ -77,9 +77,6 @@ li a:hover:not(.active) {
     <br>
     <input type="file" name="fileToUpload" id="fileToUpload" style ="border: 3px;margin-top:2%;border-radius:5px;width: 20%;height: 5%;">
 
-    Add caption:
-    <input type="text" name="caption">
-
     <input type="submit" value="Upload Image" name="submit" style="background-color: black; color:white;border: 2px solid grey; width: 20%;height: 5%;border-radius:3px;width: 10%;">
   </b>
 </center>

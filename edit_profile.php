@@ -14,7 +14,7 @@ ul.horizontal {
   margin: 0;
   padding: 1.5%;
   overflow: hidden;
-  background-color: #333;
+  background-color: #534;
 }
 ul.vertical {
   list-style-type: none;
@@ -66,9 +66,14 @@ li a:hover:not(.active) {
   border-radius: 5px;
   font-size: 15px;
 }
+#new
+{
+  a:hover:not(.active) {
+  background-color: #111;
+}
 </style>
 </head>
-<body>
+<body bgcolor="lightgrey" background="bg2.png" style="background-size: cover;background-attachment: fixed;">
 
 <ul class="horizontal">
   <li class="list1"><img src="<?php echo $img_location; ?>" alt="Avatar" style="width: 60px; height: 50px;margin: 0;padding: 0;border-radius: 50%;padding-right: 5px;"></li>
@@ -76,6 +81,7 @@ li a:hover:not(.active) {
   <li class="list1"><a href="profile_page.php">Profile</a></li>
   <li class="list1"><a href="#contact">Friend List</a></li>
     <li class="list1"><a href="#contact">My Photos</a></li>
+    <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;"><form action="search.php" method="POST"><input id="new" type="text" name="search" placeholder="Search" style="height: 20px; border: 1px solid white; padding: 0px; width: 100px; border-radius: 0px;"><input id="new" style="background-color: #534;color:white; width: 100px; border-radius: 0px; padding: 0px; border: 1px solid white;" type="submit" value="Search" name="subsearch"></form>
   <li class="list1" style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
 

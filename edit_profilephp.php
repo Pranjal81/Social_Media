@@ -5,7 +5,7 @@ include 'session.php';
 
 if(isset($_POST['save']))
 {
-  $_SESSION['fnameErr']=$_SESSION['lnameErr']=$_SESSION['phoneErr']=$_SESSION['genderErr']=$_SESSION['mailErr']="";
+  $_SESSION['fnameErr']=$_SESSION['lnameErr']=$_SESSION['phoneErr']=$_SESSION['genderErr']=$_SESSION['emailErr']="";
     $_SESSION['error']="";
     $var1=0;
     if(empty($_POST['fname'])) {
@@ -21,7 +21,7 @@ if(isset($_POST['save']))
         $var1=1;
     }
     if(empty($_POST['email'])) {
-        $_SESSION['mailErr']="E-mail can not be empty!";
+        $_SESSION['emailErr']="E-mail can not be empty!";
         $var1=1;
     }
     if($var1==1) {
@@ -46,7 +46,7 @@ if(isset($_POST['save']))
     if(!preg_match("/^[0-9 ]*$/",$phone)) {
         $_SESSION['phoneErr']="Only numerals allowed!"; $var=1; }
     if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i",  $mail)) {
-      $_SESSION['mailErr']="E-mail is not valid!"; $var=1; }
+      $_SESSION['emailErr']="E-mail is not valid!"; $var=1; }
 
     if($var==1){
 
