@@ -16,6 +16,7 @@ if(isset($_SESSION['scs'])) {
 ul.horizontal {
   list-style-type: none;
   margin: 0;
+  width: 98%;
   padding: 1.5%;
   overflow: hidden;
   background-color: #534;
@@ -57,7 +58,7 @@ li a:hover:not(.active) {
 }
 </style>
 </head>
-<body bgcolor="lightgrey" background="bg2.png">
+<body bgcolor="lightgrey" background="bg2.png" style="background-size: cover;background-attachment: fixed;">
 
 <ul class="horizontal">
   <li class="list1"><img src="<?php echo $img_location; ?>" alt="Avatar" style="width: 60px; height: 50px;margin: 0;padding: 0;border-radius: 50%;padding-right: 5px;"></li>
@@ -66,7 +67,7 @@ li a:hover:not(.active) {
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
   <li class="list1"><a href="#contact">Friend List</a></li>
     <li class="list1"><a href="#contact">My Photos</a></li>
-    <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;"><form><input type="text" name="search" value="Search" style="height: 20px;"><input style="background-color: #534;color:white;" type="submit" value="Search" name=""></form>
+    <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;"><form action="search.php" method="POST"><input type="text" name="search" placeholder="Search" style="height: 20px;"><input style="background-color: #534;color:white;" type="submit" value="Search" name="subsearch"></form>
   <li class="list1" style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
 <p id="home">
@@ -90,7 +91,8 @@ while ($row1= mysqli_fetch_assoc($result1)) {
     $post_image= $row1['post_image'];
 ?>
 <center>
-<img src="<?php echo $post_image; ?>" alt="Post image"><br>
+  <br><br>
+<img src="<?php echo $post_image; ?>" style="height: 500px; width: 500px;" alt="Post image"><br>
 </center>
 }
 
