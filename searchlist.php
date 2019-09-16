@@ -1,12 +1,6 @@
 <?php
 include 'connection.php';
 include 'session.php';
-echo $_SESSION['success'];
-$_SESSION['success']="";
-if(isset($_SESSION['scs'])) {
-  echo $_SESSION['scs'];
-  unset($_SESSION['scs']);
-}
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +65,13 @@ li a:hover:not(.active) {
   <li class="list1" style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
 
-
+<p>
+  <?php
+  echo $_SESSION['fname'];
+  echo "&nbsp";
+  echo $_SESSION['lname'];
+  ?>
+</p>
 
 </body>
 </html>
