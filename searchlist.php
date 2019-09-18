@@ -59,19 +59,44 @@ li a:hover:not(.active) {
   <li class="list1"><a href="home.php">Home</a></li>
   <li class="list1"><a href="profile_page.php">Profile</a></li>
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
-  <li class="list1"><a href="friendlist.php">Friend List</a></li>
-    <li class="list1"><a href="photos.php">My Photos</a></li>
-    <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;"><form><input type="text" name="search" value="Search" style="height: 20px;"><input style="background-color: #534;color:white;" type="submit" value="Search" name=""></form>
+  <li class="list1"><a href="#Friend_list">Friend List</a></li>
+    <li class="list1"><a href="#contact">My Photos</a></li>
+    <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;">
+      <form action="search.php" method="POST">
+        <input type="text" name="search" placeholder="Search" style="height: 20px;">
+        <input style="background-color: #534;color:white;" type="submit" value="Search" name="subsearch">
+      </form>
   <li class="list1" style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
 
-<p>
+<b>Search result:</b><br>
+
+<?php 
+if (isset($_SESSION['uname'])) {
+?>
+<center>
   <?php
   echo $_SESSION['fname'];
-  echo "&nbsp";
+  echo "&nbsp;";
   echo $_SESSION['lname'];
+  unset($_SESSION['fname']);
+  unset($_SESSION['lname']);
+  unset($_SESSION['uname']);
   ?>
-</p>
+  <br>
+  <img style="border: 3px solid white; height: 105px; width: 105px; border-radius: 80%;" src="<?php echo $_SESSION['pp']; unset($_SESSION['pp']); ?>" alt="Profile picture">
+</center>
+<?php
+}
+else { 
+?>
+<center>
+  <?php
+  echo $_SESSION['fail'];
+  unset($_SESSION['fail']);
+}
+  ?>
+</center>
 
 </body>
 </html>
