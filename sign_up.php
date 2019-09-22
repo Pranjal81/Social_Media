@@ -114,14 +114,13 @@ if(isset($_POST['log_user']))
     $_SESSION['error']=$_SESSION['username1Err']=$_SESSION['pass1Err']="";
     $var1=0;
     if(empty($_POST['pass1'])) {
-        $_SESSION['pass1Err']="Password can not be empty!";
         $var1=1;
     }
     if(empty($_POST['username1'])) {
-        $_SESSION['username1Err']="Username can not be empty!";
         $var1=1;
     }
     if($var1==1) {
+        $_SESSION['error']="Please enter both the fields!";
         header("location:loginpage.php");
     }
     else {

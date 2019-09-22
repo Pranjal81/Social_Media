@@ -1,6 +1,9 @@
 <?php
 include 'connection.php';
 include 'session.php';
+if(isset($_SESSION['f']))
+echo $_SESSION['f'];
+unset($_SESSION['f']);
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +62,7 @@ li a:hover:not(.active) {
   <li class="list1"><a href="home.php">Home</a></li>
   <li class="list1"><a href="profile_page.php">Profile</a></li>
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
-  <li class="list1"><a href="#Friend_list">Friend List</a></li>
+  <li class="list1"><a href="friendlist.php">Friend List</a></li>
     <li class="list1"><a href="#contact">My Photos</a></li>
     <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;">
       <form action="search.php" method="POST">
@@ -81,22 +84,42 @@ if (isset($_SESSION['uname'])) {
   echo $_SESSION['lname'];
   unset($_SESSION['fname']);
   unset($_SESSION['lname']);
+  $uname=$_SESSION['uname'];
   unset($_SESSION['uname']);
   ?>
   <br>
   <img style="border: 3px solid white; height: 105px; width: 105px; border-radius: 80%;" src="<?php echo $_SESSION['pp']; unset($_SESSION['pp']); ?>" alt="Profile picture">
-</center>
+  <?php
+  $resu = mysqli_query($conn, "SELECT * FROM `friends` WHERE `un`='$username' AND `fun`='$uname'");
+  if(mysqli_num_rows($resu)>0)
+  {
+  ?>
+  <center>
+  <form>
+  <input type="button" value="Unfriend" onclick="window.location.href='unfriend.php' <?php $_SESSION['uf']=$uname; ?>"/>
+  </form>
+  </center>
+  <?php
+  } 
+  else
+  {
+    ?>
+    <center>
+    <form>
+    <input type="button" value="Add as Friend" onclick="window.location.href='addfriend.php' <?php $_SESSION['un']=$uname ?>"/>
+    </form>
+    </center>
 <?php
-}
+  }
+ } 
 else { 
 ?>
-<center>
+  <center>
   <?php
   echo $_SESSION['fail'];
   unset($_SESSION['fail']);
 }
-  ?>
-</center>
-
+?>
+  </center>
 </body>
 </html>

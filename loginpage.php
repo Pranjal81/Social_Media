@@ -5,8 +5,6 @@ if(!$conn){
 	die("Connection failed:".mysqli_connect_error());
 }
 if(!isset($_SESSION['usernameErr']) || !isset($_SESSION['username1Err'])) {
-$_SESSION['username1Err']="";
-$_SESSION['pass1Err']="";
 $_SESSION['fnameErr']="";
 $_SESSION['lnameErr']="";
 $_SESSION['usernameErr']="";
@@ -86,8 +84,8 @@ $_SESSION['error']="";
 		<span style="margin-left:6vw;color:white;">Password</span>
 		<br>
 		<form action="sign_up.php" method="POST">
-		<input type="text" name="username1" placeholder="Username" style="right: 23vw; width: 11vw; border:2px solid white; margin-left:44vw;"><span id="error"><?php echo $_SESSION['username1Err']; $_SESSION['username1Err']=""; ?></span>
-		<input type="password" name="pass1" placeholder="Password" style=";right: 6vw; width: 11vw; border: 2px solid white;"><span id="error"><?php echo $_SESSION['pass1Err']; $_SESSION['pass1Err']=""; ?></span>
+		<input type="text" name="username1" placeholder="Username" style="right: 23vw; width: 11vw; border:2px solid white; margin-left:44vw;">
+		<input type="password" name="pass1" placeholder="Password" style=";right: 6vw; width: 11vw; border: 2px solid white;">
 		<input style="background-color: #534;color:white;border: 2px solid white;" type="submit" value="Login" name="log_user">
 	    </form>
 	</div>
