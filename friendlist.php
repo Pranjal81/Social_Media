@@ -66,7 +66,7 @@ li a:hover:not(.active) {
   <li class="list1"><a href="profile_page.php">Profile</a></li>
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
   <li class="list1"><a class="active" href="friendlist.php">Friend List</a></li>
-    <li class="list1"><a href="#contact">My Photos</a></li>
+    <li class="list1"><a href="myphotos.php">My Photos</a></li>
     <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;">
       <form action="search.php" method="POST">
         <input type="text" name="search" placeholder="Search" style="height: 20px;">

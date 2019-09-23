@@ -63,7 +63,7 @@ li a:hover:not(.active) {
   <li class="list1"><a href="profile_page.php">Profile</a></li>
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
   <li class="list1"><a href="friendlist.php">Friend List</a></li>
-    <li class="list1"><a href="#contact">My Photos</a></li>
+    <li class="list1"><a href="myphotos.php">My Photos</a></li>
     <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;">
       <form action="search.php" method="POST">
         <input type="text" name="search" placeholder="Search" style="height: 20px;">
@@ -96,8 +96,10 @@ if (isset($_SESSION['uname'])) {
   ?>
   <center>
   <form>
-  <input type="button" value="Unfriend" onclick="window.location.href='unfriend.php' <?php $_SESSION['uf']=$uname; ?>"/>
-  </form>
+  <form action="unfriend.php" method="POST">
+  <input type="hidden" name="uf" value="<?php echo $uname ?>">
+    <input type="submit" value="Unfriend" name="unfriend">
+</form>
   </center>
   <?php
   } 
@@ -105,8 +107,9 @@ if (isset($_SESSION['uname'])) {
   {
     ?>
     <center>
-    <form>
-    <input type="button" value="Add as Friend" onclick="window.location.href='addfriend.php' <?php $_SESSION['un']=$uname ?>"/>
+    <form action="addfriend.php" method="POST">
+      <input type="hidden" name="usern" value="<?php echo $uname; ?>">
+    <input type="submit" value="Add as Friend" name="add">
     </form>
     </center>
 <?php

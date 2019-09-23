@@ -24,9 +24,5 @@ $row= mysqli_fetch_assoc($result);
     if(!isset($_SESSION['fail'])) {
         $_SESSION['fail']="";
     }
-// $result1=mysqli_query($conn, "SELECT * FROM `post` WHERE user_id= '$id' ORDER BY `post_id` DESC");
-// $row1= mysqli_fetch_assoc($result1);
-//     $post_image= $row1['post_image'];
-    
 
 ?>

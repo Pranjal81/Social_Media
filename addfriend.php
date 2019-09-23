@@ -3,10 +3,9 @@
 include 'connection.php';
 include 'session.php';
 
-if(isset($_SESSION['un']))
+if($_POST['add'])
 {
-	$un=$_SESSION['un'];
-	unset($_SESSION['un']);
+	$un=$_POST['usern'];
 	$resu=mysqli_query($conn, "SELECT * FROM `friends` WHERE (`un`='$un' AND `fun`='$username') OR (`un`='$username' AND `fun`='$un')");
 	if(!mysqli_num_rows($resu))
 	{
