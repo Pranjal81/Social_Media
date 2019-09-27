@@ -13,10 +13,11 @@ $_SESSION['genderErr']="";
 $_SESSION['mailErr']="";
 $_SESSION['passErr']="";
 $_SESSION['cpassErr']="";
-$_SESSION['error']="";
 }
+if(isset($_SESSION['error'])) {
 echo $_SESSION['error'];
-$_SESSION['error']="";
+unset($_SESSION['error']);
+}
 ?>
 
 <!DOCTYPE html>

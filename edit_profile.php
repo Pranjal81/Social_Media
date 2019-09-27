@@ -83,6 +83,7 @@ input {
   <li class="list1"><a class="active" href="edit_profile.php">Edit</a></li>
   <li class="list1"><a href="friendlist.php">Friend List</a></li>
     <li class="list1"><a href="myphotos.php">My Photos</a></li>
+    <li class="list1"><a href="request_list.php">Friend requests</a></li>
     <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;">
       <form action="search.php" method="POST">
         <input id="new" type="text" name="search" placeholder="Search" style="height: 20px; border: 1px solid white; padding: 0px; width: 170px; border-radius: 0px;">

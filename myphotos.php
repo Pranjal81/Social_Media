@@ -2,6 +2,10 @@
 
 include 'connection.php';
 include 'session.php';
+if(isset($_SESSION['deleted'])) {
+  echo $_SESSION['deleted'];
+  unset($_SESSION['deleted']);
+}
 
 ?>
 <!DOCTYPE html>
@@ -62,6 +66,7 @@ li a:hover:not(.active) {
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
   <li class="list1"><a href="friendlist.php">Friend List</a></li>
     <li class="list1"><a class="active" href="myphotos.php">My Photos</a></li>
+    <li class="list1"><a href="request_list.php">Friend requests</a></li>
     <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;">
       <form action="search.php" method="POST">
         <input type="text" name="search" placeholder="Search" style="height: 20px;">
@@ -71,15 +76,20 @@ li a:hover:not(.active) {
 
 
 <?php
-$result1=mysqli_query($conn, "SELECT * FROM `post` WHERE `username`='$username'");
+$result1=mysqli_query($conn, "SELECT * FROM `post` WHERE `username`='$username' ORDER BY `post_id` DESC");
 if(mysqli_num_rows($result1)>0)
 {
 	while($rowx=mysqli_fetch_assoc($result1))
 	{
-	$postp=$rowx['post_image']; ?>
+	$postp=$rowx['post_image'];
+	$postid=$rowx['post_id']; ?>
 	<center>
     <br><br>
     <img src="<?php echo $postp; ?>" style="height: 500px; width: 500px;" alt="Post image"><br>
+    <form action="deletepost.php" method="POST">
+      <input type="hidden" name="postid" value="<?php echo $postid ?>">
+      <input type="submit" value="Delete" name="delsubmit1">
+    </form><br>
     </center>
 <?php
 }

@@ -1,16 +1,15 @@
 <?php
+
 include 'connection.php';
 include 'session.php';
-if(isset($_SESSION['f']))
-echo $_SESSION['f'];
-unset($_SESSION['f']);
-if(isset($_SESSION['sent']))
-{
-  echo $_SESSION['sent'];
-  unset($_SESSION['sent']);
-}
-?>
 
+if(isset($_SESSION['d']))
+{
+	echo $_SESSION['d'];
+	unset($_SESSION['d']);
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,78 +68,47 @@ li a:hover:not(.active) {
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
   <li class="list1"><a href="friendlist.php">Friend List</a></li>
     <li class="list1"><a href="myphotos.php">My Photos</a></li>
-    <li class="list1"><a href="request_list.php">Friend requests</a></li>
+    <li class="list1"><a class="active" href="request_list.php">Friend requests</a></li>
     <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;">
       <form action="search.php" method="POST">
         <input type="text" name="search" placeholder="Search" style="height: 20px;">
-        <input style="background-color: #534;color:white;" type="submit" value="Search" name="subsearch">
-      </form>
+        <input style="background-color: #7d2019;color:white;" type="submit" value="Search" name="subsearch"></form>
   <li class="list1" style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
 
-<b>Search result:</b><br>
+<?php
 
-<?php 
-if (isset($_SESSION['uname'])) {
+$resu=mysqli_query($conn, "SELECT * FROM `friend_requests` WHERE `run`='$username' ORDER BY `request_id` DESC");
+while($rowx=mysqli_fetch_assoc($resu))
+{
+    $un=$rowx['un'];
+	$res1=mysqli_query($conn, "SELECT * FROM `user` WHERE `username`='$un'");
+	$rowy=mysqli_fetch_assoc($res1);
+	$pp1=$rowy['profile_picture'];
+	$fn=$rowy['firstname'];
+	$ln=$rowy['lastname'];
 ?>
 <center>
-  <?php
-  echo $_SESSION['fname'];
-  echo "&nbsp;";
-  echo $_SESSION['lname'];
-  unset($_SESSION['fname']);
-  unset($_SESSION['lname']);
-  $uname=$_SESSION['uname'];
-  unset($_SESSION['uname']);
-  ?>
-  <br>
-  <img style="border: 3px solid white; height: 105px; width: 105px; border-radius: 80%;" src="<?php echo $_SESSION['pp']; unset($_SESSION['pp']); ?>" alt="Profile picture">
-  <?php
-  $resu = mysqli_query($conn, "SELECT * FROM `friends` WHERE `un`='$username' AND `fun`='$uname'");
-  if(mysqli_num_rows($resu)>0)
-  {
-  ?>
-  <center>
-  <form>
-  <form action="unfriend.php" method="POST">
-  <input type="hidden" name="uf" value="<?php echo $uname ?>">
-    <input type="submit" value="Unfriend" name="unfriend">
-  </form>
-  </center>
-  <?php
-  } 
-  else
-  {
-    $resu1 = mysqli_query($conn, "SELECT * FROM `friend_requests` WHERE `un`='$username' AND `run`='$uname'");
-  if(mysqli_num_rows($resu1)>0)
-  {
-  ?>
-  <center>
-  <input type="submit" name="uf" value="Friend request sent">
-  </center>
-  <?php
-  }
-  else
-  {
-    ?>
-    <center>
-    <form action="send_friend_request.php" method="POST">
-      <input type="hidden" name="usern" value="<?php echo $uname; ?>">
-    <input type="submit" value="Add as Friend" name="send">
-    </form>
-    </center>
 <?php
-  }
-  }
- } 
-else { 
+  echo $fn;
+  echo "&nbsp;";
+  echo $ln;
 ?>
-  <center>
-  <?php
-  echo $_SESSION['fail'];
-  unset($_SESSION['fail']);
+  <br>
+  <img style="border: 3px solid white; height: 105px; width: 105px; border-radius: 80%;" src="<?php echo $pp1; ?>" alt="Profile picture">
+ <form action="addfriend.php" method="POST">
+ 	<input type="hidden" name="au" value="<?php echo $un; ?>">
+    <input type="submit" value="Accept" name="accept">
+</form>
+<form action="unfriend.php" method="POST">
+ 	<input type="hidden" name="du" value="<?php echo $un; ?>">
+    <input type="submit" value="Delete" name="reject">
+</form>
+</center>
+<br>
+<?php
 }
 ?>
-  </center>
+
 </body>
 </html>

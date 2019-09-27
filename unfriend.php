@@ -11,9 +11,12 @@ if(isset($_POST['unfriend']))
 	$_SESSION['u']="Removed from Friend list";
 	header("location:friendlist.php");
 }
-else
+if(isset($_POST['reject']))
 {
-	header("location:friendlist.php");
+	$du=$_POST['du'];
+	$resu=mysqli_query($conn, "DELETE FROM `friend_requests` WHERE `run`='$username' AND `un`='$du'");
+	$_SESSION['d']="Request deleted";
+	header("location:request_list.php");
 }
 
 ?>

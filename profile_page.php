@@ -70,14 +70,13 @@ li a:hover:not(.active) {
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
   <li class="list1"><a href="friendlist.php">Friend List</a></li>
     <li class="list1"><a href="myphotos.php">My Photos</a></li>
+    <li class="list1"><a href="request_list.php">Friend requests</a></li>
     <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;">
       <form action="search.php" method="POST">
         <input type="text" name="search" placeholder="Search" style="height: 20px;">
         <input style="background-color: #7d2019;color:white;" type="submit" value="Search" name="subsearch"></form>
   <li class="list1" style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
-
-<form><input type="button" onclick="window.location.href='edit_profile.php'" value="Edit" style="float: right;margin-right: 50px;font-size: 25px;"></form>
 
 <h2 style="float: left; margin-left: 80px;font-size: 30px;">Hi &nbsp;<?php echo $firstname; ?></h2>
 <img style="border-radius: 4px; float:right;" src="<?php echo $img_location; ?>"><br>

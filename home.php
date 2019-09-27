@@ -7,6 +7,10 @@ if(isset($_SESSION['scs'])) {
   echo $_SESSION['scs'];
   unset($_SESSION['scs']);
 }
+if(isset($_SESSION['deleted'])) {
+  echo $_SESSION['deleted'];
+  unset($_SESSION['deleted']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -67,6 +71,7 @@ li a:hover:not(.active) {
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
   <li class="list1"><a href="friendlist.php">Friend List</a></li>
     <li class="list1"><a href="myphotos.php">My Photos</a></li>
+    <li class="list1"><a href="request_list.php">Friend requests</a></li>
     <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;">
       <form action="search.php" method="POST">
         <input type="text" name="search" placeholder="Search" style="height: 20px;">
@@ -90,12 +95,20 @@ $result1=mysqli_query($conn, "SELECT * FROM `post` WHERE 1 ORDER BY `post_id` DE
 while ($row1= mysqli_fetch_assoc($result1)) {
     $post_image= $row1['post_image'];
     $unm=$row1['username'];
+    $postid=$row1['post_id'];
     $result2=mysqli_query($conn, "SELECT * FROM `friends` WHERE `un`='$username' AND `fun`='$unm'");
-    if(mysqli_num_rows($result2)>0) {
+    if(mysqli_num_rows($result2)>0 || $unm==$username) {
 ?>
     <center>
     <br><br>
     <img src="<?php echo $post_image; ?>" style="height: 500px; width: 500px;" alt="Post image"><br>
+    <?php
+    if($unm==$username) { ?>
+    <form action="deletepost.php" method="POST">
+      <input type="hidden" name="postid" value="<?php echo $postid ?>">
+      <input type="submit" value="Delete" name="delsubmit">
+    </form>
+    <?php } ?>
     </center>
 <?php
 }

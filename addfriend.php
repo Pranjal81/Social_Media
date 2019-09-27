@@ -3,15 +3,16 @@
 include 'connection.php';
 include 'session.php';
 
-if($_POST['add'])
+if($_POST['accept'])
 {
-	$un=$_POST['usern'];
-	$resu=mysqli_query($conn, "SELECT * FROM `friends` WHERE (`un`='$un' AND `fun`='$username') OR (`un`='$username' AND `fun`='$un')");
+	$un=$_POST['au'];
+	$resu=mysqli_query($conn, "SELECT * FROM `friends` WHERE `un`='$username' AND `fun`='$un'");
 	if(!mysqli_num_rows($resu))
 	{
         $s=mysqli_query($conn, "INSERT INTO `friends`(`un`, `fun`) VALUES ('$username', '$un')");
         $s=mysqli_query($conn, "INSERT INTO `friends`(`fun`, `un`) VALUES ('$username', '$un')");
-        $_SESSION['f']="added in friend list";
+        $_SESSION['f']="Friend request accepted";
+        $resu=mysqli_query($conn, "DELETE FROM `friend_requests` WHERE `un`='$username' AND `run`='$un'");
         header("location:searchlist.php");
     }
     else {

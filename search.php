@@ -6,6 +6,8 @@ include 'session.php';
 if(isset($_POST['subsearch']))
 {
 	$search_profile=$_POST['search'];
+	if($username!=$search_profile)
+	{
 	$s=mysqli_query($conn, "SELECT * FROM `user` WHERE `username`='$search_profile'");
 	if(mysqli_num_rows($s)>0)
 	{
@@ -21,7 +23,11 @@ if(isset($_POST['subsearch']))
 		$_SESSION['fail']="No user found!";
 		header("location:searchlist.php");
 	}
-	
+	}
+	else
+	{
+		header("location:searchlist.php");
+	}
 }
 
 ?>
