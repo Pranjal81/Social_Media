@@ -84,8 +84,9 @@ li a:hover:not(.active) {
     <b style="font-size: 25px;" >Select image to upload:
     <br>
     <input type="file" name="fileToUpload" id="fileToUpload" style ="border: 3px;margin-top:2%;border-radius:5px;width: 20%;height: 5%;">
-    <input type="hidden" name="usernamee" value="<?php echo $username; ?>">
-    <input type="submit" value="Upload Image" name="submit" style="background-color: black; color:white;border: 2px solid grey; width: 20%;height: 5%;border-radius:3px;width: 10%;">
+    <input type="text" name="caption" placeholder="Add a caption...">
+    <input type="hidden" name="usernamee" value="<?php echo $username; ?>"><br>
+    <input type="submit" value="Upload" name="submit" style="background-color: black; color:white;border: 2px solid grey; width: 20%;height: 5%;border-radius:3px;width: 10%;">
   </b>
 </center>
 </form>
@@ -95,6 +96,7 @@ $result1=mysqli_query($conn, "SELECT * FROM `post` WHERE 1 ORDER BY `post_id` DE
 while ($row1= mysqli_fetch_assoc($result1)) {
     $post_image= $row1['post_image'];
     $unm=$row1['username'];
+    $caption=$row1['content'];
     $postid=$row1['post_id'];
     $result2=mysqli_query($conn, "SELECT * FROM `friends` WHERE `un`='$username' AND `fun`='$unm'");
     if(mysqli_num_rows($result2)>0 || $unm==$username) {
@@ -102,14 +104,14 @@ while ($row1= mysqli_fetch_assoc($result1)) {
     <center>
     <br><br>
     <img src="<?php echo $post_image; ?>" style="height: 500px; width: 500px;" alt="Post image"><br>
+    <pre style="margin-right: 135px;"><b>@<?php echo $unm; ?></b>&nbsp;<?php echo $caption; ?></pre><br>
     <?php
     if($unm==$username) { ?>
     <form action="deletepost.php" method="POST">
       <input type="hidden" name="postid" value="<?php echo $postid ?>">
       <input type="submit" value="Delete" name="delsubmit">
-    </form>
+    </form></center>
     <?php } ?>
-    </center>
 <?php
 }
 else {;

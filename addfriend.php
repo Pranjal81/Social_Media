@@ -12,7 +12,7 @@ if($_POST['accept'])
         $s=mysqli_query($conn, "INSERT INTO `friends`(`un`, `fun`) VALUES ('$username', '$un')");
         $s=mysqli_query($conn, "INSERT INTO `friends`(`fun`, `un`) VALUES ('$username', '$un')");
         $_SESSION['f']="Friend request accepted";
-        $resu=mysqli_query($conn, "DELETE FROM `friend_requests` WHERE `un`='$username' AND `run`='$un'");
+        $resu=mysqli_query($conn, "DELETE FROM `friend_requests` WHERE `run`='$username' AND `un`='$un'");
         header("location:searchlist.php");
     }
     else {
