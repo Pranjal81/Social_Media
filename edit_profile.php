@@ -2,6 +2,10 @@
 
 include 'connection.php';
 include 'session.php';
+if(isset($_SESSION['postid']))
+{ unset($_SESSION['postid']); }
+if(isset($_SESSION['postimage']))
+{ unset($_SESSION['postimage']); }
 
 ?>
 

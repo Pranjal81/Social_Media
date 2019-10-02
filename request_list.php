@@ -8,6 +8,10 @@ if(isset($_SESSION['d']))
 	echo $_SESSION['d'];
 	unset($_SESSION['d']);
 }
+if(isset($_SESSION['postid']))
+{ unset($_SESSION['postid']); }
+if(isset($_SESSION['postimage']))
+{ unset($_SESSION['postimage']); }
 
 ?>
 <!DOCTYPE html>

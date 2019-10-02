@@ -2,19 +2,6 @@
 
 include 'connection.php';
 include 'session.php';
-if(isset($_SESSION['scs'])) {
-  echo $_SESSION['scs'];
-  unset($_SESSION['scs']);
-}
-if(isset($_SESSION['err'])) {
-  echo $_SESSION['err'];
-  unset($_SESSION['err']);
-}
-if(isset($_SESSION['postid']))
-{ unset($_SESSION['postid']); }
-if(isset($_SESSION['postimage']))
-{ unset($_SESSION['postimage']); }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,7 +57,7 @@ li a:hover:not(.active) {
 <ul class="horizontal">
   <li class="list1"><img src="<?php echo $img_location; ?>" alt="Avatar" style="width: 60px; height: 50px;margin: 0;padding: 0;border-radius: 50%;padding-right: 5px;"></li>
   <li class="list1"><a href="home.php">Home</a></li>
-  <li class="list1"><a class="active" href="profile_page.php">Profile</a></li>
+  <li class="list1"><a href="profile_page.php">Profile</a></li>
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
   <li class="list1"><a href="friendlist.php">Friend List</a></li>
     <li class="list1"><a href="myphotos.php">My Photos</a></li>
@@ -81,22 +68,39 @@ li a:hover:not(.active) {
         <input style="background-color: #7d2019;color:white;" type="submit" value="Search" name="subsearch"></form>
   <li class="list1" style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
-
-<h2 style="float: left; margin-left: 80px;font-size: 30px;">Hi &nbsp;<?php echo $firstname; ?></h2>
-<img style="border-radius: 4px; float:right;" src="<?php echo $img_location; ?>"><br>
-
-<br><br>
-<h1 align="center">Personl Info</h1>
-<ul style="margin-left: 150px;margin-top: 55px;">
-  <b style="font-size: 35px;">
-  <li style="padding : 20px 20px;">First Name : &nbsp;<?php echo $firstname; ?></li>
-  <li style="padding : 20px 20px;">Last Name : &nbsp;<?php echo $lastname; ?></li>
-  <li style="padding : 20px 20px;">Username : &nbsp;<?php echo $username; ?></li>
-  <li style="padding : 20px 20px;">E-mail : &nbsp;<?php echo $mail; ?></li>
-  <li style="padding : 20px 20px;">Phone No : &nbsp;<?php echo $phone; ?></li>
-  <li style="padding : 20px 20px;">Birthday : &nbsp;<?php echo $birthday; ?></li>
-</b>
-</ul>
-
-</body>
-</html>
+<?php
+if(isset($_SESSION['postimage']))
+{
+	$post_image=$_SESSION['postimage'];
+}
+else
+{
+	$post_image=$_POST['post_image'];
+}
+?>
+    <center>
+    <img src="<?php echo $post_image ?>"><br>
+    <?php
+    if(isset($_SESSION['postid']))
+    {
+        $postid=$_SESSION['postid'];
+    }
+    else
+    {
+    	$postid=$_POST['post_id'];
+    }
+    $result1=mysqli_query($conn, "SELECT * FROM `comments` WHERE `post_id`='$postid' ORDER BY `comment_id` ASC");
+    while($rowx=mysqli_fetch_assoc($result1))
+    {
+    	?>
+    	<b><?php echo $rowx['username']; ?></b>&nbsp;<span><?php echo $rowx['content_comment']; ?></span><br>
+    	<?php
+    }
+    ?>
+    <form action="commentphp.php" method="POST">
+    	<b><?php echo $username ?>&nbsp;</b><input type="text" name="com" placeholder="Write a comment...">
+    	<input type="hidden" name="post__id" value="<?php echo $postid ?>">
+    	<input type="hidden" name="post__image" value="<?php echo $post_image ?>">
+    	<input type="submit" name="commented" value="Post comment">
+    </form>
+</center>

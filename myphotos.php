@@ -6,6 +6,10 @@ if(isset($_SESSION['deleted'])) {
   echo $_SESSION['deleted'];
   unset($_SESSION['deleted']);
 }
+if(isset($_SESSION['postid']))
+{ unset($_SESSION['postid']); }
+if(isset($_SESSION['postimage']))
+{ unset($_SESSION['postimage']); }
 
 ?>
 <!DOCTYPE html>
