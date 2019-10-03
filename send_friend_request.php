@@ -1,8 +1,6 @@
 <?php
-
 include 'connection.php';
 include 'session.php';
-
 if($_POST['send'])
 {
 	$rn=$_POST['usern'];
@@ -11,5 +9,4 @@ if($_POST['send'])
 	$_SESSION['sent']="Friend request sent successfully";
 	header("location:searchlist.php");
 }
-
 ?>

@@ -10,93 +10,46 @@ if(isset($_SESSION['err'])) {
   echo $_SESSION['err'];
   unset($_SESSION['err']);
 }
-if(isset($_SESSION['postid']))
-{ unset($_SESSION['postid']); }
-if(isset($_SESSION['postimage']))
-{ unset($_SESSION['postimage']); }
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-ul.horizontal {
-  list-style-type: none;
-  margin: 0;
-  width: 98%;
-  padding: 1.5%;
-  overflow: hidden;
-  background-color: #534;
-}
-ul.vertical {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  margin-top: 0px;
-  width: 150px;
-  height: 600px;
-  background-color: #333;
-}
-li a.list2 {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-li.list1 {
-  float: left;
-  border-right:2px solid #bbb;
-}
-li:last-child {
-  border-right: none;
-}
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 18px 25px;
-  text-decoration: none;
-}
-li a:hover:not(.active) {
-  background-color: #111;
-}
-.active {
-  background-color: #86DF20;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body bgcolor="lightgrey" background="bg2.png" style="background-size: cover;background-attachment: fixed;">
+<body>
 
 <ul class="horizontal">
-  <li class="list1"><img src="<?php echo $img_location; ?>" alt="Avatar" style="width: 60px; height: 50px;margin: 0;padding: 0;border-radius: 50%;padding-right: 5px;"></li>
+  <li class="list1"><img src="<?php echo $img_location; ?>" alt="Avatar" class="profilepic"></li>
   <li class="list1"><a href="home.php">Home</a></li>
   <li class="list1"><a class="active" href="profile_page.php">Profile</a></li>
   <li class="list1"><a href="edit_profile.php">Edit</a></li>
   <li class="list1"><a href="friendlist.php">Friend List</a></li>
-    <li class="list1"><a href="myphotos.php">My Photos</a></li>
-    <li class="list1"><a href="request_list.php">Friend requests</a></li>
-    <li class="list1" style="height:40px;width: 180px;padding: 10px 15px;">
+  <li class="list1"><a href="request_list.php">Friend requests</a></li>
+  <li class="list1"><a href="myphotos.php">My Photos</a></li>
+    <li class ="searchinlist">
       <form action="search.php" method="POST">
         <input type="text" name="search" placeholder="Search" style="height: 20px;">
         <input style="background-color: #7d2019;color:white;" type="submit" value="Search" name="subsearch"></form>
   <li class="list1" style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
-
-<h2 style="float: left; margin-left: 80px;font-size: 30px;">Hi &nbsp;<?php echo $firstname; ?></h2>
-<img style="border-radius: 4px; float:right;" src="<?php echo $img_location; ?>"><br>
-
-<br><br>
-<h1 align="center">Personl Info</h1>
-<ul style="margin-left: 150px;margin-top: 55px;">
-  <b style="font-size: 35px;">
-  <li style="padding : 20px 20px;">First Name : &nbsp;<?php echo $firstname; ?></li>
-  <li style="padding : 20px 20px;">Last Name : &nbsp;<?php echo $lastname; ?></li>
-  <li style="padding : 20px 20px;">Username : &nbsp;<?php echo $username; ?></li>
-  <li style="padding : 20px 20px;">E-mail : &nbsp;<?php echo $mail; ?></li>
-  <li style="padding : 20px 20px;">Phone No : &nbsp;<?php echo $phone; ?></li>
-  <li style="padding : 20px 20px;">Birthday : &nbsp;<?php echo $birthday; ?></li>
-</b>
-</ul>
+<div class="details">
+<fieldset style="border: 8px solid #989898;">
+<form><input type="button" onclick="window.location.href='edit_profile.php'" value="Edit" style="float: right;margin-right: 50px;font-size: 25px;"></form>
+<legend><h2>Personl Info</h2></legend>
+<img class="profilepics" src="<?php echo $img_location; ?>"><br>
+<div class="vl">
+<ul class="details1">
+  <li class="space">First Name&nbsp; : &nbsp;<?php echo $firstname; ?></li>
+  <li class="space">Last Name &nbsp;: &nbsp;<?php echo $lastname; ?></li>
+  <li class="space">Username &nbsp;&nbsp;: &nbsp;<?php echo $username; ?></li>
+  <li class="space">E-mail &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<?php echo $mail; ?></li>
+  <li class="space">Phone No &nbsp;&nbsp;: &nbsp;<?php echo $phone; ?></li>
+  <li class="space">Birthday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<?php echo $birthday; ?></li>
+</ul></div>
+</fieldset>
+</div>
 
 </body>
 </html>

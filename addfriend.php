@@ -1,14 +1,12 @@
 <?php
-
 include 'connection.php';
 include 'session.php';
-
 if($_POST['accept'])
 {
-	$un=$_POST['au'];
-	$resu=mysqli_query($conn, "SELECT * FROM `friends` WHERE `un`='$username' AND `fun`='$un'");
-	if(!mysqli_num_rows($resu))
-	{
+    $un=$_POST['au'];
+    $resu=mysqli_query($conn, "SELECT * FROM `friends` WHERE `un`='$username' AND `fun`='$un'");
+    if(!mysqli_num_rows($resu))
+    {
         $s=mysqli_query($conn, "INSERT INTO `friends`(`un`, `fun`) VALUES ('$username', '$un')");
         $s=mysqli_query($conn, "INSERT INTO `friends`(`fun`, `un`) VALUES ('$username', '$un')");
         $_SESSION['f']="Friend request accepted";
@@ -16,12 +14,12 @@ if($_POST['accept'])
         header("location:searchlist.php");
     }
     else {
-    	$_SESSION['f']="Already friends";
-    	header("location:searchlist.php");
+        $_SESSION['f']="Already friends";
+        header("location:searchlist.php");
     }
 }
 else
 {
-	header("location:searchlist.php");
+    header("location:searchlist.php");
 }
 ?>

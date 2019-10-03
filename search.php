@@ -1,8 +1,6 @@
 <?php
-
 include 'connection.php';
 include 'session.php';
-
 if(isset($_POST['subsearch']))
 {
 	$search_profile=$_POST['search'];
@@ -29,5 +27,4 @@ if(isset($_POST['subsearch']))
 		header("location:searchlist.php");
 	}
 }
-
 ?>

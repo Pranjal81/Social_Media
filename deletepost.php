@@ -1,8 +1,6 @@
 <?php
-
 include 'connection.php';
 include 'session.php';
-
 if($_POST['delsubmit'])
 {
 	$postid=$_POST['postid'];
@@ -25,5 +23,4 @@ if($_POST['delsubmit1'])
 	$_SESSION['deleted']="Post deleted successfully";
 	header("location:myphotos.php");
 }
-
 ?>

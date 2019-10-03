@@ -13,70 +13,21 @@ $_SESSION['genderErr']="";
 $_SESSION['mailErr']="";
 $_SESSION['passErr']="";
 $_SESSION['cpassErr']="";
+$_SESSION['error']="";
 }
-if(isset($_SESSION['error'])) {
 echo $_SESSION['error'];
-unset($_SESSION['error']);
-}
+$_SESSION['error']="";
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login/Registration</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style >
-		.body{
-			margin: 0;
-			padding: 0;
-			background-color: white;
-			}
-		.header
-		{
-			background-color:#534;
-			width:100%; 
-			height: 80px;
-			border:1px solid #534;
-
-		}
-		.left
-		{
-			width: 55%;
-			position: absolute;
-			margin-left: 5vw;
-		}
-		.right
-		{
-			width: 45%;
-			position: absolute;
-			top:16%;
-			left: 56%;
-		}
-			.registration_form
-		{
-			background-color:white;
-			border: 1px solid rgb(189, 199, 216);
-			border-radius:5px;
-			font-family:Helvetica, Arial, sans-serif;
-			font-size:18px;
-			font-weight:500;
-			outline-color:rgb(77, 144, 254);
-			padding-bottom:8px;
-			padding-top:8px;
-			padding-left:10px;
-			padding-right:10px;
-			margin:6px;
-		}
-		#error
-		{
-			color: red;
-			font-size: 70%;
-		}
-	</style>
+<title>Login/Registration</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body bgcolor="lightgrey" background="bg2.png" style="background-size: cover;background-attachment: fixed;">
+<body>
 	<div class="header">
-		<span style="float: left;color:white;margin-top: 25px;font-size: 3vw;margin-left: 30px;">
+		<span class="text">
 		<b>
 			APNIBOOK
 		</b>
@@ -85,14 +36,17 @@ unset($_SESSION['error']);
 		<span style="margin-left:6vw;color:white;">Password</span>
 		<br>
 		<form action="sign_up.php" method="POST">
-		<input type="text" name="username1" placeholder="Username" style="right: 23vw; width: 11vw; border:2px solid white; margin-left:44vw;">
-		<input type="password" name="pass1" placeholder="Password" style=";right: 6vw; width: 11vw; border: 2px solid white;">
-		<input style="background-color: #534;color:white;border: 2px solid white;" type="submit" value="Login" name="log_user">
+		<input type="text" name="username1" placeholder="Username" class="user">
+		<input type="password" name="pass1" placeholder="Password" class="user1">
+		<input style="background-color: #534;color:white;border: 2px solid white;right: 3vw;" type="submit" value="Login" name="log_user">
 	    </form>
 	</div>
 	<div class="right">
 		<br><br><span style="color:#0E385F;font-size: 20px;margin:2%;position: relative;">JOIN, CONNECT and SHARE :)</span><br>
 		<span style="color: #0E385F;">It helps to connect with friends and share memories with them.</span>
+	</div>
+	<div class="loginpic">
+		<img src="smbg.png" alt="pic" style="width: 400px; height: 400px;">
 	</div>
 	<div class="left">
 		

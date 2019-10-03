@@ -1,8 +1,6 @@
 <?php
-
 include 'connection.php';
 include 'session.php';
-
 if($_POST['commented'])
 {
 	$content_comment=$_POST['com'];
@@ -13,5 +11,4 @@ if($_POST['commented'])
 	$_SESSION['postimage']=$postimage;
 	header("location:comment.php");
 }
-
 ?>
