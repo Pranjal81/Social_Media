@@ -83,6 +83,14 @@ li a:hover:not(.active) {
 <?php
 
 $resu=mysqli_query($conn, "SELECT * FROM `friend_requests` WHERE `run`='$username' ORDER BY `request_id` DESC");
+if(mysqli_num_rows($resu)==0)
+{
+  ?>
+  <center>No friend requests!!!</center>
+  <?php
+}
+else
+{
 while($rowx=mysqli_fetch_assoc($resu))
 {
     $un=$rowx['un'];
@@ -111,6 +119,7 @@ while($rowx=mysqli_fetch_assoc($resu))
 </center>
 <br>
 <?php
+}
 }
 ?>
 

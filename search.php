@@ -11,8 +11,7 @@ if(isset($_POST['subsearch']))
 	$s=mysqli_query($conn, "SELECT * FROM `user` WHERE `username`='$search_profile'");
 	if(mysqli_num_rows($s)>0)
 	{
-		$ss=mysqli_query($conn, "SELECT * FROM `user` WHERE `username`='$search_profile'");
-		$row2=mysqli_fetch_assoc($ss);
+		$row2=mysqli_fetch_assoc($s);
 		$_SESSION['uname']=$row2['username'];
         $_SESSION['pp']=$row2['profile_picture'];
         $_SESSION['fname']=$row2['firstname'];

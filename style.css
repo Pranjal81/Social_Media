@@ -1,10 +1,66 @@
-
+.ment
+{
+  width: 300px;
+  border: 3px solid #989999;
+  font-family: Halvetica,Aerial, sans-serif;
+  background-color: #e0bfcc;
+  font-size: 20px;
+}
+.imgsrch
+{
+  border: 3px solid white; 
+  height: 105px; 
+  width: 105px; 
+  border-radius: 80%;
+}
 .header
 {
   background-color:#534; 
   height: 80px;
-  width: 90%;
+  width: 97%;
   border:1px solid #534;
+}
+.user
+{
+  right: 23vw; 
+  width: 11vw; 
+  border:2px solid white; 
+  margin-left:44vw;
+}
+.user1
+{
+  right: 6vw; 
+  width: 11vw; 
+  border: 2px solid white;
+}
+.lg
+{
+  background-color: #534;
+  color:white;
+  border: 2px solid white;
+  right: 3vw;
+}
+.textt
+{
+  color:#0E385F;
+  font-size: 20px;
+  margin:2%;
+  position: relative;
+}
+.create
+{
+  font-size: 3vw;
+  color: #333;
+  font-family: Halvetica,Aerial, sans-serif;
+}
+.account
+{
+  background-color: #534; 
+  color:white;
+  border: 1px solid rgb(189, 199, 216); 
+  border-radius:4px; 
+  padding: 1vw; 
+  margin-left: 1vw;
 }
 .left
 {
@@ -175,7 +231,6 @@ label.spa{
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
 .profilepics
 {
 
@@ -186,7 +241,6 @@ label.spa{
   border-radius: 20px;
   float:left;
 }
-
 .in {
   height: 40px;
   width: 20%;
@@ -198,11 +252,25 @@ label.spa{
 }
 .cap{
 
-  height: 70px;
-  width: 550px;
-  border: 5px solid black;
+  height: 80px;
+  width: 570px;
+  border: 3.5px solid black;
   text-align: center;
-  background-color: #ebff9c;
+  background-color: #e0bfcc;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 22px;
+}
+.ff{
+
+    font-family: Helvetica, Arial, sans-serif;
+    float: left;
+}
+.t1{
+
+  text-align: none;
+}
+#new
+{
+  a:hover:not(.active) {
+  background-color: #111;
 }

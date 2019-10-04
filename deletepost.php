@@ -7,16 +7,8 @@ if($_POST['delsubmit'])
 {
 	$postid=$_POST['postid'];
 	$del=mysqli_query($conn, "DELETE FROM `post` WHERE `post_id`='$postid'");
-	if(mysqli_num_rows($del)>0)
-	{
-		$_SESSION['deleted']="Post deleted successfully";
-		header("location:home.php");
-	}
-	else
-	{
-		$_SESSION['deleted']="Something wrong, please try again later!";
-		header("location:home.php");
-	}
+	$_SESSION['deleted']="Post deleted successfully";
+	header("location:home.php");
 }
 if($_POST['delsubmit1'])
 {
